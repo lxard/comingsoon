@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top, #0f2027, #000);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e0f7ff;
+}
+
+/* Fog / mist effect */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url("https://i.imgur.com/8KQ8FQF.png");
+  opacity: 0.08;
+  animation: fogMove 60s linear infinite;
+}
+
+@keyframes fogMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-50%, -50%); }
+}
+
+.container {
+  text-align: center;
+  z-index: 2;
+}
+
+/* Glowing text */
+h1 {
+  font-size: 4rem;
+  letter-spacing: 4px;
+  color: #b9faff;
+  text-shadow:
+    0 0 10px #5fdfff,
+    0 0 20px #3bbcff,
+    0 0 40px #1aa3ff;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow:
+      0 0 8px #4fc3ff,
+      0 0 16px #29b6f6;
+  }
+  to {
+    text-shadow:
+      0 0 16px #81d4fa,
+      0 0 32px #29b6f6,
+      0 0 64px #0288d1;
+  }
+}
+
+p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+/* Wet glass effect */
+.card {
+  margin-top: 40px;
+  padding: 30px 50px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 25px rgba(0,180,255,0.3),
+    inset 0 0 15px rgba(255,255,255,0.15);
+}
+
+/* Rain animation */
+.rain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.drop {
+  position: absolute;
+  bottom: 100%;
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(120,200,255,0.8));
+  animation: rain linear infinite;
+}
+
+@keyframes rain {
+  to {
+    transform: translateY(110vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="rain" id="rain"></div>
+
+<div class="container">
+  <div class="card">
+    <h1>COMING SOON</h1>
+    <p>Website kami sedang disiapkan<br>
+    Hadir dengan sesuatu yang spesial ✨</p>
+  </div>
+</div>
+
+<script>
+const rainContainer = document.getElementById("rain");
+
+for (let i = 0; i < 120; i++) {
+  const drop = document.createElement("div");
+  drop.classList.add("drop");
+  drop.style.left = Math.random() * 100 + "vw";
+  drop.style.animationDuration = (0.8 + Math.random()) + "s";
+  drop.style.animationDelay = Math.random() * 2 + "s";
+  rainContainer.appendChild(drop);
+}
+</script>
+
+</body>
+</html>
